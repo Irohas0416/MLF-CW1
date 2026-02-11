@@ -29,7 +29,7 @@ yhat_lm = model.predict(X_tst)
 # Format submission:
 # This is a single-column CSV with nothing but your predictions
 out = pd.DataFrame({'yhat': yhat_lm})
-out.to_csv('CW1_submission_KN23154082.csv', index=False) # Please use your k-number here
+out.to_csv('CW1_submission_K23154082.csv', index=False) # Please use your k-number here
 
 ################################################################################
 

@@ -20,7 +20,7 @@ pipe = Pipeline([
     ("imp", SimpleImputer(strategy="median")),
     ("m", HistGradientBoostingRegressor(
         random_state=RANDOM_STATE,
-        early_stopping=False  # 关键：关掉 early stopping
+        early_stopping=False
     ))
 ])
 
@@ -29,7 +29,7 @@ scorer = make_scorer(r2_score)
 
 param_dist = {
     "m__learning_rate": [0.01, 0.03, 0.05, 0.08, 0.1, 0.15],
-    "m__max_iter": [200, 400, 800, 1200, 2000],          # 新增
+    "m__max_iter": [200, 400, 800, 1200, 2000],
     "m__max_depth": [None, 2, 3, 4, 5],
     "m__max_leaf_nodes": [31, 63, 127, 255],
     "m__min_samples_leaf": [10, 20, 40, 80, 120],
@@ -38,7 +38,7 @@ param_dist = {
 }
 
 search = RandomizedSearchCV(
-    pipe, param_dist, n_iter=60,   # 电脑慢就改 40
+    pipe, param_dist, n_iter=60,
     scoring=scorer, cv=cv,
     random_state=RANDOM_STATE, n_jobs=-1, verbose=1
 )
