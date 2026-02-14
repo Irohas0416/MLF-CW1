@@ -30,13 +30,11 @@ model = Pipeline(steps=[
 
 cv = KFold(n_splits=5, shuffle=True, random_state=RANDOM_STATE)
 
-# OOF 预测：每个样本用“没见过它”的fold模型预测
 y_oof = cross_val_predict(model, X, y, cv=cv, n_jobs=-1)
 print("OOF R2:", r2_score(y, y_oof))
 
 residual = y - y_oof
 
-# 图1：预测 vs 真实
 plt.figure()
 plt.scatter(y, y_oof, s=8)
 plt.xlabel("True outcome")
@@ -45,7 +43,6 @@ plt.title("OOF Prediction vs True")
 plt.tight_layout()
 plt.savefig("oof_pred_vs_true.png", dpi=200)
 
-# 图2：残差 vs 预测
 plt.figure()
 plt.scatter(y_oof, residual, s=8)
 plt.axhline(0)

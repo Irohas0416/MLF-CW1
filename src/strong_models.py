@@ -18,7 +18,6 @@ X = pd.get_dummies(trn.drop(columns=["outcome"]))
 y = trn["outcome"]
 X_test = pd.get_dummies(tst)
 
-# 对齐列，避免 one-hot 列不一致
 X_test = X_test.reindex(columns=X.columns, fill_value=0)
 
 cv = KFold(n_splits=5, shuffle=True, random_state=RANDOM_STATE)
@@ -68,5 +67,5 @@ pred = best_model.predict(X_test)
 
 
 out = pd.DataFrame({"yhat": pred})
-out.to_csv("CW1_submission_K23154082.csv", index=False)
+out.to_csv("CW1_submission_K23154082-1.csv", index=False)
 print("Saved submission from:", best[2])
